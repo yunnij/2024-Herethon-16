@@ -47,9 +47,19 @@ INSTALLED_APPS = [
     # DRF 추가
     'rest_framework',
 
+    # auth 패키지 추가
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    #'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth.registration',
+
     # 앱 추가
     'portfolios', 'videos',
 ]
+
+AUTH_USER_MODEL = 'auth.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +69,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware', 
 ]
+
+REST_FRAMEWORK = { 
+	'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework.authentication.TokenAuthentication', 
+    ],
+}
 
 ROOT_URLCONF = 'danjang_prj.urls'
 
